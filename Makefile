@@ -1,3 +1,28 @@
+## QWASAR PROJECT, 2020
+## my_ls
+## File description: This C make file can help to build the my_ls program/executable.
 
-my_ls: main.c sortfunctions.c stringfunctions.c directoryfunctions.c
-	gcc -g3 -fsanitize=address -Wall -Werror -Wextra -o my_ls main.c sortfunctions.c stringfunctions.c directoryfunctions.c
+## Setting the compiler
+CC = gcc
+
+## Setting the compile flag variables for gcc
+CFLAGS = -g -Wall -Werror -Wextra -g3 -fsanitize=address
+
+## In this section, files that are part of the project are listed.
+SOURCES = directoryfunctions.c sortfunctions.c stringfunctions.c main.c
+OBJECTS = $(SOURCES:.c=.o)
+TARGET = my_ls
+
+# The first target defined in the makefile is the one
+# used when make is invoked with no argument. Given the definitions
+# above, this Makefile file will build the one named TARGET and
+# assume that it depends on all the named OBJECTS files.
+$(TARGET) : $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+# Phony means not a "real" target, it doesn't build anything
+# The phony target "clean" is used to remove all compiled object files.
+.PHONY: clean
+clean:
+	@rm -f $(TARGET) $(OBJECTS) core
+
