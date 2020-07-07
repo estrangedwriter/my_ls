@@ -7,7 +7,6 @@
 ** Timesort uses the bubblesorting method to sort 2 separate arrays by 'time modified' order.
 **
 */
-
 #include "prototypes.h"
 #include <stdio.h>
 
