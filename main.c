@@ -15,7 +15,6 @@ int main(int argc, char* argv[]) {
 
     DIR *folder = folder;
     struct dirent* entry = entry;
-    struct stat filestat = filestat;
     char* input;
     
     // execution of basic my_ls command
@@ -35,47 +34,11 @@ int main(int argc, char* argv[]) {
             }
             else if (argv[1][1] == 't') {
                 input = ".";
-                int s = countdirectory(folder, entry, input);
-                int cool[s];
-                char arr[s][256];
-                int index = 0;
-                folder = opendir(input);
-                while ( (entry = readdir(folder)) ) {       // read through the directory and add the objects into the 2d array
-                    stat(entry->d_name, &filestat);
-                    my_strcpy(arr[index], entry->d_name);
-                    cool[index] = filestat.st_mtime;
-                    index++;
-                }
-                closedir(folder);                           // close directory and add newline
-                timesort(s, arr, cool);                     // timesort the 2d array
-                printdirectory(arr, s);             // print the 2d array
+                lstime(folder, entry, input);
             }
         }
     }
 }
-    #if 0
-    // execution of my_ls -a command
-    else if ( my_strcmp(argv[1], "-a") == 0 ) {
-        lsall (folder, entry, s, arr); // executes ls -a command for current directory
-    }
-    // execution of my_ls -t command
-    else if ( my_strcmp(argv[1], "-t") == 0) {
-        int cool[s];
-        folder = opendir(".");                      // open directory and check if null
-        if (folder == NULL) {
-            printf("unable to read directory");
-            return (1);
-        }
-        while ( (entry = readdir(folder)) ) {       // read through the directory and add the objects into the 2d array
-            stat(entry->d_name, &filestat);
-            my_strcpy(arr[index], entry->d_name);
-            cool[index] = filestat.st_mtime;
-            index++;
-        }
-        closedir(folder);                           // close directory and add newline
-        timesort(s, arr, cool);                     // timesort the 2d array
-        printdirectory(arr, s);             // print the 2d array
-    }
-    #endif 
+
 
 

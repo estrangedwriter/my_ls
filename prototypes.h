@@ -25,3 +25,4 @@ int storearray (DIR* folder, struct dirent* entry, int s, char arr[s][256], char
 // optionhandling.c
 void lsbasic (DIR* folder, struct dirent* entry, char* input); 
 void lsall (DIR* folder, struct dirent* entry, char* input);
+int lstime (DIR* folder, struct dirent* entry, char* input);

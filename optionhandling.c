@@ -24,3 +24,28 @@ void lsall (DIR* folder, struct dirent* entry, char* input) {
     selectionSort(arr, s);    // sort the 2d array and make it presentable for printing
     printdirectoryall(arr, s); // print the 2d array
 }
+
+int lstime (DIR* folder, struct dirent* entry, char* input) {
+    struct stat filestat;
+    int s = countdirectory(folder, entry, input);
+    int cool[s];
+    char arr[s][256];
+    int index = 0;
+    
+    folder = opendir(input);
+    if (folder == NULL) {
+        printf("./my_ls: cannot access '%s': No such file or directory\n", input);
+        return 0;
+    }
+
+    while ( (entry = readdir(folder)) ) {       // read through the directory and add the objects into the 2d array
+        stat(entry->d_name, &filestat);
+        my_strcpy(arr[index], entry->d_name);
+        cool[index] = filestat.st_mtime;
+        index++;
+    }
+    closedir(folder);                           // close directory and add newline
+    timesort(s, arr, cool);                     // timesort the 2d array
+    printdirectory(arr, s);             // print the 2d array
+    return 0;
+}
