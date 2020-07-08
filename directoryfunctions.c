@@ -27,7 +27,7 @@ int countdirectory (DIR* folder, struct dirent* entry, char* input) {
     return s;
 }
 
-int printdirectory (char arr[][50], int s) {
+int printdirectory (char arr[][256], int s) {
     int index;
     
     if ( ( s > 1) ) {
@@ -44,7 +44,7 @@ int printdirectory (char arr[][50], int s) {
     return 0;
 }
 
-int printdirectoryall (char arr[][50], int s) {
+int printdirectoryall (char arr[][256], int s) {
     int index;
     if ( (s > 1) ) {
         for (index = 0; index < s; index++) {
@@ -60,7 +60,7 @@ int printdirectoryall (char arr[][50], int s) {
     return 0;
 }
 
-int storearray (DIR* folder, struct dirent* entry, int s, char arr[s][50], char* input) {
+int storearray (DIR* folder, struct dirent* entry, int s, char arr[s][256], char* input) {
     int index = 0;
     folder = opendir(input);
     

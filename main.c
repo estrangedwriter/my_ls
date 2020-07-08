@@ -9,27 +9,50 @@
 #include <dirent.h>
 #include "prototypes.h"
 #include <sys/stat.h>
+#include <string.h>
 
 int main(int argc, char* argv[]) {
 
     DIR *folder = folder;
     struct dirent* entry = entry;
     struct stat filestat = filestat;
-    char *input;
-
+    char* input;
+    
     // execution of basic my_ls command
     if (argc == 1) {
         input = ".";
         lsbasic(folder, entry, input);  // executes ls command for current directory
     }
-    
-    else if (argc > 1) {
-        
+    else if (argc == 2) {
         if (argv[1][0] != '-') {
             input = argv[1];
-            lsbasic(folder, entry, input);
+            lsbasic(folder, entry,input);
+        }
+        else if (argv[1][0] == '-') {
+            if (argv[1][1] == 'a') {
+                input = ".";
+                lsall(folder, entry, input);
+            }
+            else if (argv[1][1] == 't') {
+                input = ".";
+                int s = countdirectory(folder, entry, input);
+                int cool[s];
+                char arr[s][256];
+                int index = 0;
+                folder = opendir(input);
+                while ( (entry = readdir(folder)) ) {       // read through the directory and add the objects into the 2d array
+                    stat(entry->d_name, &filestat);
+                    my_strcpy(arr[index], entry->d_name);
+                    cool[index] = filestat.st_mtime;
+                    index++;
+                }
+                closedir(folder);                           // close directory and add newline
+                timesort(s, arr, cool);                     // timesort the 2d array
+                printdirectory(arr, s);             // print the 2d array
+            }
         }
     }
+}
     #if 0
     // execution of my_ls -a command
     else if ( my_strcmp(argv[1], "-a") == 0 ) {
@@ -55,7 +78,4 @@ int main(int argc, char* argv[]) {
     }
     #endif 
 
-    else {
-        printf("./my_ls: cannot access '%s': No such file or directory\n", argv[1]);
-    }
-}
+

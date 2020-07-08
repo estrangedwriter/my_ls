@@ -10,12 +10,12 @@
 #include "prototypes.h"
 #include <stdio.h>
 
-void selectionSort(char arr[][50], int n) 
+void selectionSort(char arr[][256], int n) 
 { 
     int i, j;
    
     // One by one move boundary of unsorted subarray 
-    char minStr[50]; 
+    char minStr[256]; 
     for (i = 0; i < n-1; i++) 
     { 
         // Find the minimum element in unsorted array 
@@ -35,7 +35,7 @@ void selectionSort(char arr[][50], int n)
         // Swap the found minimum element with the first element 
         if (min_idx != i) 
         { 
-            char temp[100]; 
+            char temp[256]; 
             my_strcpy(temp, arr[i]); //swap item[pos] and item[i] 
             my_strcpy(arr[i], arr[min_idx]); 
             my_strcpy(arr[min_idx], temp); 
@@ -50,7 +50,7 @@ void swap(int *xp, int *yp)
     *yp = temp; 
 } 
 
-void timesort(int n, char name[][50] , int arr[]) {
+void timesort(int n, char name[][256] , int arr[]) {
 
    int i, j; 
    char temp[50];
