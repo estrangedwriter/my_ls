@@ -23,11 +23,13 @@ int main(int argc, char* argv[]) {
         lsbasic(folder, entry, input);  // executes ls command for current directory
     }
     else if (argc == 2) {
+
         if (argv[1][0] != '-') {
             input = argv[1];
             lsbasic(folder, entry,input);
         }
         else if (argv[1][0] == '-') {
+
             if (argv[1][1] == 'a') {
                 input = ".";
                 lsall(folder, entry, input);
@@ -38,7 +40,13 @@ int main(int argc, char* argv[]) {
             }
         }
     }
+    
+    else if (argc > 2) {
+
+    }
+
 }
+
 
 
 
