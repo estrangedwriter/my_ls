@@ -30,16 +30,15 @@ int countdirectory (DIR* folder, struct dirent* entry, char* input) {
 int printdirectory (char arr[][256], int s) {
     int index;
     
-    if ( ( s > 1) ) {
+    if ( ( s > 2) ) {
         for (index = 0; index < s; index++) {
             if (my_strcmp(arr[index], ".") != 0 && my_strcmp(arr[index], "..") != 0 && arr[index][0] !='.')
                 printf("%s  ", arr[index]);
         }
         printf("\n");
     }
-    else if ( (s = 0) ) {
-        return 0;
-    
+    else if ( (s <= 2) ) {
+        return 0;    
     }
     return 0;
 }
@@ -53,7 +52,7 @@ int printdirectoryall (char arr[][256], int s) {
         printf("\n");
     }
 
-    else if ( (s = 0) ) {
+    else if ( (s = 1) ) {
         return 0;
     }
 

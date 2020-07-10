@@ -26,3 +26,5 @@ int storearray (DIR* folder, struct dirent* entry, int s, char arr[s][256], char
 void lsbasic (DIR* folder, struct dirent* entry, char* input); 
 void lsall (DIR* folder, struct dirent* entry, char* input);
 int lstime (DIR* folder, struct dirent* entry, char* input);
+int lstimeall (DIR* folder, struct dirent* entry, char* input);
+int* flagparse (char* userinput[], int argc, int array[2]); 
