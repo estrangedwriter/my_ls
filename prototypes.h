@@ -27,4 +27,5 @@ void lsbasic (DIR* folder, struct dirent* entry, char* input);
 void lsall (DIR* folder, struct dirent* entry, char* input);
 int lstime (DIR* folder, struct dirent* entry, char* input);
 int lstimeall (DIR* folder, struct dirent* entry, char* input);
-int* flagparse (char* userinput[], int argc, int array[2]); 
+int* flagparse (char* userinput[], int argc, int array[2]);
+int output (DIR* folder, struct dirent* entry, char* argv[], int argc, int array[2]); 
